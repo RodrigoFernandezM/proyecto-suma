@@ -1,0 +1,20 @@
+name: Despliegue usando SSH
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-slim
+
+    steps:
+      - name: Setup SSH
+        run:
+          mkdir -p ~/.ssh
+          echo "CLAVE PRIVADA" > ~/.ssh/id_rsa
+          chmod 660 ~/.ssh/id_rsa
+
+      - name: Despliegue en el servidor
+        run:
